@@ -57,15 +57,8 @@ public class ArticlesController extends ApiController {
             @Parameter(name="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS") @RequestParam("localDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime localDateTime)
             throws JsonProcessingException {
 
-        // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-        // See: https://www.baeldung.com/spring-date-parameters
-
         log.info("localDateTime={}", localDateTime);
 
-        // UCSBDate ucsbDate = new UCSBDate();
-        // ucsbDate.setQuarterYYYYQ(quarterYYYYQ);
-        // ucsbDate.setName(name);
-        // ucsbDate.setLocalDateTime(localDateTime);
         Articles articles = new Articles();
         articles.setTitle(title);
         articles.setUrl(url);
