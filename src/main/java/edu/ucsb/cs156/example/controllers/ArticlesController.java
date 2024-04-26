@@ -29,7 +29,7 @@ import javax.validation.Valid;
 
 import java.time.LocalDateTime;
 
-@Tag(name = "Articles")
+@Tag(name = "articles")
 @RequestMapping("/api/articles")
 @RestController
 @Slf4j
@@ -54,7 +54,7 @@ public class ArticlesController extends ApiController {
             @Parameter(name="url") @RequestParam String url,
             @Parameter(name="explanation") @RequestParam String explanation,
             @Parameter(name="email") @RequestParam String email,
-            @Parameter(name="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS") @RequestParam("dateAdded") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAdded)
+            @Parameter(name="dateAdded") @RequestParam("dateAdded") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAdded)
             throws JsonProcessingException {
 
         log.info("dateAdded={}", dateAdded);

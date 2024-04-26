@@ -59,8 +59,8 @@
                   },
                     {
                         "column": {
-                        "name": "DATEADDED",
-                        "type": "VARCHAR(255)"
+                        "name": "DATE_ADDED",
+                        "type": "TIMESTAMP"
                         }
                     }
                 ],
