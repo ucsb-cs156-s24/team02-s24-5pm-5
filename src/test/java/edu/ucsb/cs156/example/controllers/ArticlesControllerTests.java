@@ -136,7 +136,7 @@ public class ArticlesControllerTests extends ControllerTestCase{
 
             // act
             MvcResult response = mockMvc.perform(
-                            post("/api/articles/post?name=firstDayOfClasses&quarterYYYYQ=20222&localDateTime=2022-01-03T00:00:00")
+                            post("/api/articles/post?title=test1post&url=test1post.com&explanation=test2post explanation&email=test2post@gmail.com&dateAdded=2022-01-03T00:00:00")
                                             .with(csrf()))
                             .andExpect(status().isOk()).andReturn();
 
