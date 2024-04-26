@@ -54,17 +54,17 @@ public class ArticlesController extends ApiController {
             @Parameter(name="url") @RequestParam String url,
             @Parameter(name="explanation") @RequestParam String explanation,
             @Parameter(name="email") @RequestParam String email,
-            @Parameter(name="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS") @RequestParam("localDateTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime localDateTime)
+            @Parameter(name="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS") @RequestParam("dateAdded") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateAdded)
             throws JsonProcessingException {
 
-        log.info("localDateTime={}", localDateTime);
+        log.info("dateAdded={}", dateAdded);
 
         Articles articles = new Articles();
         articles.setTitle(title);
         articles.setUrl(url);
         articles.setExplanation(explanation);
         articles.setEmail(email);
-        articles.setDateAdded(localDateTime);
+        articles.setDateAdded(dateAdded);
 
         Articles savedArticle = articlesRepository.save(articles);
 
