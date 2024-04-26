@@ -20,9 +20,10 @@ import lombok.Builder;
 public class Articles {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-    String title;
-    String url;
-    String explanation;
-    String email;
-    LocalDateTime dateAdded;
+    private long id;
+    private String title;
+    private String url;
+    private String explanation;
+    private String email;
+    private LocalDateTime dateAdded;
 }
