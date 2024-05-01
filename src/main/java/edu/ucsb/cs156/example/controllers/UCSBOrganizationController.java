@@ -66,4 +66,16 @@ public class UCSBOrganizationController extends ApiController {
         UCSBOrganization savedOrg = ucsbOrganizationRepository.save(org);
         return savedOrg;
     }
+
+    @Operation(summary= "Delete a UCSBOrganization")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("")
+    public Object deleteUCSBOrg(
+            @Parameter(name="orgCode") @RequestParam String orgCode) {
+                UCSBOrganization org = ucsbOrganizationRepository.findById(orgCode)
+                .orElseThrow(() -> new EntityNotFoundException(UCSBOrganization.class, orgCode));
+
+        ucsbOrganizationRepository.delete(org);
+        return genericMessage("UCSBOrganization with id %s deleted".formatted(orgCode));
+    }
 }
