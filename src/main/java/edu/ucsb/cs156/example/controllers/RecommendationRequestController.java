@@ -36,14 +36,14 @@ public class RecommendationRequestController extends ApiController {
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
     public Iterable<RecommendationRequest> allRequests() {
-        Iterable<RecommendationRequest> recommendationRequests = recommendationRequestRepository.findAll();
-        return recommendationRequests;
+        Iterable<RecommendationRequest> recommendationRequest = recommendationRequestRepository.findAll();
+        return recommendationRequest;
     }
 
     @Operation(summary= "Create a new recommendation requests")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
-    public RecommendationRequest postRecommendationRequests(
+    public RecommendationRequest postRecommendationRequest(
         @Parameter(name="requesterEmail") @RequestParam String requesterEmail,
         @Parameter(name="professorEmail") @RequestParam String professorEmail,
         @Parameter(name="explanation") @RequestParam String explanation,
@@ -53,17 +53,17 @@ public class RecommendationRequestController extends ApiController {
         )
         {
 
-        RecommendationRequest recommendationRequests = new RecommendationRequest();
-        commons.setRequesterEmail(requesterEmail);
-        commons.setProfessorEmail(professorEmail);
-        commons.setExplanation(explanation);
-        commons.setDateRequested(dateRequested);
-        commons.setHasDiningCam(hasDiningCam);
-        commons.setLatitude(latitude);
-        commons.setLongitude(longitude);
+        RecommendationRequest recommendationRequest = new RecommendationRequest();
+        recommendationRequest.setRequesterEmail(requesterEmail);
+        recommendationRequest.setProfessorEmail(professorEmail);
+        recommendationRequest.setExplanation(explanation);
+        recommendationRequest.setDateRequested(dateRequested);
+        recommendationRequest.setHasDiningCam(hasDiningCam);
+        recommendationRequest.setLatitude(latitude);
+        recommendationRequest.setLongitude(longitude);
 
-        RecommendationRequest recommendationRequests = recommendationRequestRepository.save(request);
+        RecommendationRequest recommendationRequest = recommendationRequestRepository.save(request);
 
-        return recommendationRequests;
+        return recommendationRequest;
     }
 }
