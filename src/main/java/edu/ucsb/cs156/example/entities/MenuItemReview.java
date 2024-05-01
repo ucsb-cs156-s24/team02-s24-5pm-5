@@ -25,6 +25,4 @@ public class MenuItemReview{
     private String stars;
     private String comments;
 
-
-
 }
