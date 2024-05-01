@@ -2,8 +2,8 @@
   "databaseChangeLog": [
     {
       "changeSet": {
-        "id": "Articles-1",
-        "author": "Tommygithubaccount123",
+        "id": "UCSBDiningCommonsMenuItems-1",
+        "author": "RileyC",
         "preConditions": [
           {
             "onFail": "MARK_RAN"
@@ -12,7 +12,7 @@
             "not": [
               {
                 "tableExists": {
-                  "tableName": "ARTICLES"
+                  "tableName": "UCSBDININGCOMMONSMENUITEMS"
                 }
               }
             ]
@@ -27,7 +27,7 @@
                     "autoIncrement": true,
                     "constraints": {
                       "primaryKey": true,
-                      "primaryKeyName": "CONSTRAINT_43"
+                      "primaryKeyName": "CONSTRAINT_ID"
                     },
                     "name": "ID",
                     "type": "BIGINT"
@@ -35,43 +35,24 @@
                 },
                 {
                   "column": {
-                    "name": "TITLE",
+                    "name": "DINING_COMMONS_CODE",
                     "type": "VARCHAR(255)"
                   }
                 },
                 {
                   "column": {
-                    "name": "URL",
+                    "name": "NAME",
                     "type": "VARCHAR(255)"
                   }
                 },
                 {
                   "column": {
-                    "name": "EXPLANATION",
+                    "name": "STATION",
                     "type": "VARCHAR(255)"
                   }
-                },
-                {
-                  "column": {
-                    "name": "EMAIL",
-                    "type": "VARCHAR(255)"
-                  }
-                },
-                  {
-                    "column": {
-                      "name": "EMAIL",
-                      "type": "VARCHAR(255)"
-                    }
-                  },
-                    {
-                        "column": {
-                        "name": "DATE_ADDED",
-                        "type": "TIMESTAMP"
-                        }
-                    }
-                ],
-                "tableName": "ARTICLES"
-              }
+                }
+              ],
+              "tableName": "UCSBDININGCOMMONSMENUITEMS"
             }
           }
         ]
