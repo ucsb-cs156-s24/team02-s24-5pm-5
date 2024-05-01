@@ -293,4 +293,96 @@ public class UCSBDiningCommonsMenuItemsControllerTests
             json.get("message")
         );
     }
+
+    // Tests for PUT /api/ucsbdiningcommonsmenuitems?id=...
+
+    @WithMockUser(roles = { "ADMIN", "USER" })
+    @Test
+    public void admin_can_edit_an_existing_ucsbdiningcommonsmenuitem()
+        throws Exception {
+        // arrange
+        UCSBDiningCommonsMenuItems ucsbDiningCommonsMenuItemsOrig =
+            UCSBDiningCommonsMenuItems.builder()
+                .diningCommonsCode("ortega")
+                .name("Chicken Noodle Soup")
+                .station("Entree")
+                .build();
+
+        UCSBDiningCommonsMenuItems ucsbDiningCommonsMenuItemsEdited =
+            UCSBDiningCommonsMenuItems.builder()
+                .diningCommonsCode("portola")
+                .name("Banana Pie")
+                .station("Dessert")
+                .build();
+
+        String requestBody = mapper.writeValueAsString(
+            ucsbDiningCommonsMenuItemsEdited
+        );
+
+        when(ucsbDiningCommonsMenuItemsRepository.findById(eq(67L))).thenReturn(
+            Optional.of(ucsbDiningCommonsMenuItemsOrig)
+        );
+
+        // act
+        MvcResult response = mockMvc
+            .perform(
+                put("/api/ucsbdiningcommonsmenuitems?id=67")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .characterEncoding("utf-8")
+                    .content(requestBody)
+                    .with(csrf())
+            )
+            .andExpect(status().isOk())
+            .andReturn();
+
+        // assert
+        verify(ucsbDiningCommonsMenuItemsRepository, times(1)).findById(67L);
+        verify(ucsbDiningCommonsMenuItemsRepository, times(1)).save(
+            ucsbDiningCommonsMenuItemsEdited
+        ); // should be saved with correct user
+        String responseString = response.getResponse().getContentAsString();
+        assertEquals(requestBody, responseString);
+    }
+
+    @WithMockUser(roles = { "ADMIN", "USER" })
+    @Test
+    public void admin_cannot_edit_ucsbdiningcommonsmenuitems_that_does_not_exist()
+        throws Exception {
+        // arrange
+
+        UCSBDiningCommonsMenuItems ucsbEditedDiningCommonsMenuItems =
+            UCSBDiningCommonsMenuItems.builder()
+                .diningCommonsCode("ortega")
+                .name("Chicken Noodle Soup")
+                .station("Entree")
+                .build();
+
+        String requestBody = mapper.writeValueAsString(
+            ucsbEditedDiningCommonsMenuItems
+        );
+
+        when(ucsbDiningCommonsMenuItemsRepository.findById(eq(67L))).thenReturn(
+            Optional.empty()
+        );
+
+        // act
+        MvcResult response = mockMvc
+            .perform(
+                put("/api/ucsbdiningcommonsmenuitems?id=67")
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .characterEncoding("utf-8")
+                    .content(requestBody)
+                    .with(csrf())
+            )
+            .andExpect(status().isNotFound())
+            .andReturn();
+
+        // assert
+        verify(ucsbDiningCommonsMenuItemsRepository, times(1)).findById(67L);
+        Map<String, Object> json = responseToJson(response);
+        assertEquals(
+            "UCSBDiningCommonsMenuItems with id 67 not found",
+            json.get("message")
+        );
+    }
 }
