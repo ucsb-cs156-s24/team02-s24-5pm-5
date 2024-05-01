@@ -46,7 +46,7 @@ public class UCSBOrganizationController extends ApiController {
     @Operation(summary= "Create a new UCSB Organization")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
-    public UCSBOrganization postUCSB(
+    public UCSBOrganization postUCSBOrgs(
         @Parameter(name="orgCode") @RequestParam String orgCode,
         @Parameter(name="orgTranslationShort") @RequestParam String orgTranslationShort,
         @Parameter(name="orgTranslation") @RequestParam String orgTranslation,

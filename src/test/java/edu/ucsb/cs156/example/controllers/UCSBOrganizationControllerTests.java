@@ -116,7 +116,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
                                 .orgCode("TT")
                                 .orgTranslationShort("TropicThunder")
                                 .orgTranslation("TropicThunder")
-                                .inactive(false)
+                                .inactive(true)
                                 .build();
 
                 when(ucsbOrganizationRepository.save(eq(TT))).thenReturn(TT);
@@ -124,7 +124,7 @@ public class UCSBOrganizationControllerTests extends ControllerTestCase {
                 // act
                 MvcResult response = mockMvc.perform(
                                 // post("/api/ucsbdiningcommons/post?name=Ortega&code=ortega&hasSackMeal=true&hasTakeOutMeal=true&hasDiningCam=true&latitude=34.410987&longitude=-119.84709")
-                                post("/api/UCSBOrganization/post?orgCode=TT&orgTranslationShort=TropicThunder&orgTranslation=TropicThunder&inactive=false")
+                                post("/api/UCSBOrganization/post?orgCode=TT&orgTranslationShort=TropicThunder&orgTranslation=TropicThunder&inactive=true")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
