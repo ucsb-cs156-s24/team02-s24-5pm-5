@@ -13,7 +13,7 @@ import lombok.Builder;
 @NoArgsConstructor
 @Builder
 @Entity(name = "recommendationrequests")
-public class UCSBDiningCommons {
+public class RecommendationRequests {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
