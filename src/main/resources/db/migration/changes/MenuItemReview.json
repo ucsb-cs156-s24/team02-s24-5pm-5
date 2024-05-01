@@ -1,62 +1,71 @@
 {
     "databaseChangeLog": [
-      {
-        "changeSet": {
-          "id": "MenuItemReview-1",
-          "author": "tejasvissa813",
-          "preConditions": [
-            {
-              "onFail": "MARK_RAN"
-            },
-            {
-              "not": [
+        {
+            "changeSet": {
+            "id": "MenuItemReview-1",
+            "author": "tejasvissa813",
+            "preConditions": [
                 {
-                  "tableExists": {
-                    "tableName": "MENUITEMREVIEW"
-                  }
+                "onFail": "MARK_RAN"
+                },
+                {
+                "not": [
+                    {
+                    "tableExists": {
+                        "tableName": "MENUITEMREVIEW"
+                    }
+                    }
+                ]
                 }
-              ]
+            ],
+            "changes": [
+                {
+                "createTable": {
+                    "columns": [
+                        {
+                            "column": {
+                            "autoIncrement": true,
+                            "constraints": {
+                                "primaryKey": true,
+                                "primaryKeyName": "CONSTRAINT_751"
+                            },
+                            "name": "ID",
+                            "type": "BIGINT"
+                            }
+                        },
+                        {
+                            "column": {
+                                "constraints": {
+                                    "nullable": false
+                                },
+                                "name": "REVIEWER_EMAIL",
+                                "type": "VARCHAR(255)"
+                            }
+                        },
+                        {
+                            "column": {
+                                "constraints": {
+                                    "nullable": false
+                                },
+                                "name": "STARS",
+                                "type": "VARCHAR(255)"
+                            }
+                        },
+                        {
+                            "column": {
+                                "constraints": {
+                                    "nullable": false
+                                },
+                                "name": "COMMENTS",
+                                "type": "VARCHAR(255)"
+                            }
+                        }
+                    ],
+                    "tableName": "MENUITEMREVIEW"
+                }
+                }
+            ]
             }
-          ],
-          "changes": [
-            {
-              "createTable": {
-                "columns": [
-                  {
-                    "column": {
-                      "autoIncrement": true,
-                      "constraints": {
-                        "primaryKey": true,
-                        "primaryKeyName": "CONSTRAINT_751"
-                      },
-                      "name": "ID",
-                      "type": "BIGINT"
-                    }
-                  },
-                  {
-                    "column": {
-                      "name": "REVIEWER_EMAIL",
-                      "type": "VARCHAR(255)"
-                    }
-                  },
-                  {
-                    "column": {
-                      "name": "STARS",
-                      "type": "VARCHAR(255)"
-                    }
-                  },
-                  {
-                    "column": {
-                      "name": "COMMENTS",
-                      "type": "VARCHAR(255)"
-                    }
-                  }
-                ],
-                "tableName": "MENUITEMREVIEW"
-              }
-            }
-          ]
         }
-      }
     ]
   }
