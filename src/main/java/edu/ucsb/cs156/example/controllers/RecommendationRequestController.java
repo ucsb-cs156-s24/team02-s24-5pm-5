@@ -43,7 +43,7 @@ public class RecommendationRequestController extends ApiController {
     @Operation(summary= "Create a new recommendation requests")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
-    public UCSBDiningCommons postRecommendationRequests(
+    public RecommendationRequest postRecommendationRequests(
         @Parameter(name="requesterEmail") @RequestParam String requesterEmail,
         @Parameter(name="professorEmail") @RequestParam String professorEmail,
         @Parameter(name="explanation") @RequestParam String explanation,
@@ -62,7 +62,7 @@ public class RecommendationRequestController extends ApiController {
         commons.setLatitude(latitude);
         commons.setLongitude(longitude);
 
-        UCSBDiningCommons recommendationRequests = ucsbDiningCommonsRepository.save(request);
+        RecommendationRequest recommendationRequests = recommendationRequestRepository.save(request);
 
         return recommendationRequests;
     }
