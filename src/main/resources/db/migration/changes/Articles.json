@@ -58,20 +58,13 @@
                   }
                 },
                   {
-                    "column": {
-                      "name": "EMAIL",
-                      "type": "VARCHAR(255)"
-                    }
-                  },
-                    {
-                        "column": {
-                        "name": "DATE_ADDED",
-                        "type": "TIMESTAMP"
-                        }
-                    }
-                ],
-                "tableName": "ARTICLES"
-              }
+                      "column": {
+                      "name": "DATE_ADDED",
+                      "type": "TIMESTAMP"
+                      }
+                  }
+              ],
+              "tableName": "ARTICLES"
             }
           }
         ]
