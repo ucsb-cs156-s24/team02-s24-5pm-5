@@ -11,9 +11,9 @@
                 {
                 "not": [
                     {
-                    "tableExists": {
-                        "tableName": "MENUITEMREVIEW"
-                    }
+                        "tableExists": {
+                            "tableName": "MENUITEMREVIEW"
+                        }
                     }
                 ]
                 }
@@ -27,7 +27,7 @@
                             "autoIncrement": true,
                             "constraints": {
                                 "primaryKey": true,
-                                "primaryKeyName": "CONSTRAINT_ID"
+                                "primaryKeyName": "CONSTRAINT_9"
                             },
                             "name": "ID",
                             "type": "BIGINT"
