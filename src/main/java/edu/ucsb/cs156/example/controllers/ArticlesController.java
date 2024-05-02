@@ -70,7 +70,7 @@ public class ArticlesController extends ApiController {
 
         return savedArticle;
     }
-
+  
   
     @Operation(summary= "Get a single article")
     @PreAuthorize("hasRole('ROLE_USER')")
