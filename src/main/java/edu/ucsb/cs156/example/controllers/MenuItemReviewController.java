@@ -32,7 +32,7 @@ import java.time.LocalDateTime;
 @RequestMapping("/api/menuitemreview")
 @RestController
 @Slf4j
-public class MenuItemReviewController {
+public class MenuItemReviewController extends ApiController{
     @Autowired
     MenuItemReviewRepository menuItemReviewRepository;
 
@@ -76,9 +76,9 @@ public class MenuItemReviewController {
     @GetMapping("")
     public MenuItemReview getById(
             @Parameter(name = "id") @RequestParam Long id) {
-        MenuItemReview menuItemReviews = menuItemReviewRepository.findById(id)
+        MenuItemReview rev = menuItemReviewRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(MenuItemReview.class, id));
 
-        return menuItemReviews;
+        return rev;
     }
 }
