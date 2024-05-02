@@ -67,7 +67,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
             MenuItemReview entry1 = MenuItemReview.builder()
                             .itemId(1)
                             .reviewerEmail("a@b.com")
-                            .stars("2")
+                            .stars(2)
                             .comments("bad food")
                             .dateReviewed(ldt1)
                             .build();
@@ -77,7 +77,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
             MenuItemReview entry2 = MenuItemReview.builder()
                             .itemId(2)
                             .reviewerEmail("b@a.com")
-                            .stars("4")
+                            .stars(4)
                             .comments("good food")
                             .dateReviewed(ldt2)
                             .build();
@@ -124,7 +124,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
             MenuItemReview entry1 = MenuItemReview.builder()
                             .itemId(1)
                             .reviewerEmail("a@b.com")
-                            .stars("2")
+                            .stars(2)
                             .comments("badfood")
                             .dateReviewed(ldt1)
                             .build();
