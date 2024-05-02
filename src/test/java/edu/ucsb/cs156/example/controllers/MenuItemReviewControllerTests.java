@@ -133,7 +133,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
 
             // act
             MvcResult response = mockMvc.perform(
-                            post("/api/menuitemreviews/post?itemId=1&reviewerEmail=a@b.com&comments=badfood&dateReviewed=2022-01-03T00:00:00")
+                            post("/api/menuitemreview/post?itemId=1&reviewerEmail=a@b.com&comments=badfood&dateReviewed=2022-01-03T00:00:00")
                                             .with(csrf()))
                             .andExpect(status().isOk()).andReturn();
 
