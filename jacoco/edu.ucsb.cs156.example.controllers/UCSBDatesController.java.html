@@ -42,7 +42,7 @@ import java.time.LocalDateTime;
     public Iterable&lt;UCSBDate&gt; allUCSBDates() {
 <span class="fc" id="L43">        Iterable&lt;UCSBDate&gt; dates = ucsbDateRepository.findAll();</span>
 <span class="fc" id="L44">        return dates;</span>
-    }
+    } 
 
     @Operation(summary= &quot;Create a new date&quot;)
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
