@@ -44,18 +44,18 @@ public class RecommendationRequestControllerTests extends ControllerTestCase {
     @MockBean
     UserRepository userRepository;
 
-    //Tests for GET /api/recommendationrequests/all
+    //Tests for GET /api/RecommendationRequests/all
 
     @Test
     public void logged_out_users_cannot_get_all_recommendation_requests() throws Exception {
-        mockMvc.perform(get("/api/recommendationrequests/all"))
+        mockMvc.perform(get("/api/RecommendationRequests/all"))
                 .andExpect(status().is(403));
     }
 
     @WithMockUser(roles ={"USER"})
     @Test
     public void users_can_get_all() throws Exception {
-        mockMvc.perform(get("/api/recommendationrequests/all"))
+        mockMvc.perform(get("/api/RecommendationRequests/all"))
                 .andExpect(status().is(200));
     }
 
@@ -86,7 +86,7 @@ public class RecommendationRequestControllerTests extends ControllerTestCase {
 
         when(recommendationRequestRepository.findAll()).thenReturn(expected1Recommendations);
 
-        MvcResult response = mockMvc.perform(get("/api/recommendationrequests/all")).andExpect(status().is(200)).andReturn();
+        MvcResult response = mockMvc.perform(get("/api/RecommendationRequests/all")).andExpect(status().is(200)).andReturn();
 
         verify(recommendationRequestRepository, times(1)).findAll();
         String expected1Json = mapper.writeValueAsString(expected1Recommendations);
@@ -97,13 +97,13 @@ public class RecommendationRequestControllerTests extends ControllerTestCase {
 
     @Test
     public void logged_out_users_cannot_post() throws Exception {
-        mockMvc.perform(post("/api/recommendationrequests/post")).andExpect(status().is(403));
+        mockMvc.perform(post("/api/RecommendationRequests/post")).andExpect(status().is(403));
     }
 
     @WithMockUser(roles = { "USER" })
     @Test
     public void logged_in_regular_users_cannot_post() throws Exception {
-        mockMvc.perform(post("/api/recommendationrequests/post")).andExpect(status().is(403));
+        mockMvc.perform(post("/api/RecommendationRequests/post")).andExpect(status().is(403));
     }
 
 
@@ -112,16 +112,16 @@ public class RecommendationRequestControllerTests extends ControllerTestCase {
     public void an_admin_user_can_post_a_new_recommendationrequest() throws Exception {
         RecommendationRequest expected1 = new RecommendationRequest();
         expected1.setId(0);
-        expected1.setRequesterEmail("requesterEmail");
-        expected1.setProfessorEmail("professorEmail");
-        expected1.setExplanation("explanation");
+        expected1.setRequesterEmail("a");
+        expected1.setProfessorEmail("b");
+        expected1.setExplanation("c");
         expected1.setDateRequested(LocalDateTime.parse("2024-04-26T08:08:00"));
         expected1.setDateNeeded( LocalDateTime.parse("2024-04-27T08:08:00"));
         expected1.setDone(false);
 
         when(recommendationRequestRepository.save(eq(expected1))).thenReturn(expected1);
 
-        MvcResult response = mockMvc.perform(post("/api/recommendationrequests/post?requesterEmail=requesterEmail&professorEmail=professorEmail&explanation=explanation&dateRequested=2024-04-26T08:08:00&dateNeeded=2024-04-27T08:08:00&done=true").with(csrf())).andExpect(status().is(200)).andReturn();
+        MvcResult response = mockMvc.perform(post("/api/RecommendationRequests/post?requesterEmail=a&professorEmail=b&explanation=c&dateRequested=2024-04-26T08:08:00&dateNeeded=2024-04-27T08:08:00&done=false").with(csrf())).andExpect(status().is(200)).andReturn();
 
         verify(recommendationRequestRepository, times(1)).save(eq(expected1));
         String expected1Json = mapper.writeValueAsString(expected1);

@@ -8,6 +8,8 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.format.annotation.DateTimeFormat;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -47,8 +49,8 @@ public class RecommendationRequestController extends ApiController {
         @Parameter(name="requesterEmail") @RequestParam String requesterEmail,
         @Parameter(name="professorEmail") @RequestParam String professorEmail,
         @Parameter(name="explanation") @RequestParam String explanation,
-        @Parameter(name="dateRequested") @RequestParam LocalDateTime dateRequested,
-        @Parameter(name="dateNeeded") @RequestParam LocalDateTime dateNeeded,
+        @Parameter(name="dateRequested") @RequestParam("dateRequested") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateRequested,
+        @Parameter(name="dateNeeded") @RequestParam("dateNeeded") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateNeeded,
         @Parameter(name="done") @RequestParam boolean done
         )
     {
