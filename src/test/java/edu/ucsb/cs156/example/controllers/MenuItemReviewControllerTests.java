@@ -119,7 +119,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
     public void an_admin_user_can_post_a_new_ucsbdate() throws Exception {
             // arrange
 
-            LocalDateTime ldt3 = LocalDateTime.parse("2024-05-02T04:30:15.809Z");
+            LocalDateTime ldt3 = LocalDateTime.parse("2024-05-02T04:30:15");
 
             MenuItemReview entry1 = MenuItemReview.builder()
                             .itemId(1)
@@ -133,7 +133,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
 
             // act
             MvcResult response = mockMvc.perform(
-                            post("api/menuitemreviews/post?itemId=1&reviewerEmail=a%40b.com&stars=4&dateReviewed=2024-05-02T04%3A30%3A15.809Z&comments=food")
+                            post("https://team02.dokku-00.cs.ucsb.edu/api/menuitemreviews/post?itemId=1&reviewerEmail=a%40b.com&stars=4&dateReviewed=2024-05-02T04%3A30%3A15&comments=food")
                                             .with(csrf()))
                             .andExpect(status().isOk()).andReturn();
 
