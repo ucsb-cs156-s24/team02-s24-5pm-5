@@ -42,7 +42,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
     @MockBean
     UserRepository userRepository;
 
-    // Tests for GET /api/ucsbdates/all
+    // Tests for GET /api/menuitemreview/all
         
     @Test
     public void logged_out_users_cannot_get_all() throws Exception {
@@ -59,27 +59,27 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
 
     @WithMockUser(roles = { "USER" })
     @Test
-    public void logged_in_user_can_get_all_ucsbdates() throws Exception {
+    public void logged_in_user_can_get_all_review() throws Exception {
 
             // arrange
-            LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
+            LocalDateTime ldt1 = LocalDateTime.parse("2000-01-03T00:00:00");
 
             MenuItemReview entry1 = MenuItemReview.builder()
                             .itemId(1)
-                            .reviewerEmail("a@b.com")
-                            .stars(2)
+                            .reviewerEmail("a")
+                            .stars(5)
                             .dateReviewed(ldt1)
-                            .comments("bad food")
+                            .comments("b")
                             .build();
 
-            LocalDateTime ldt2 = LocalDateTime.parse("2022-03-11T00:00:00");
+            LocalDateTime ldt2 = LocalDateTime.parse("2000-03-11T00:00:00");
 
             MenuItemReview entry2 = MenuItemReview.builder()
                             .itemId(2)
-                            .reviewerEmail("b@a.com")
-                            .stars(4)
+                            .reviewerEmail("a")
+                            .stars(1)
                             .dateReviewed(ldt2)
-                            .comments("good food")
+                            .comments("b")
                             .build();
 
             ArrayList<MenuItemReview> expectedReviews = new ArrayList<>();
@@ -99,7 +99,7 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
             assertEquals(expectedJson, responseString);
     }
 
-    // Tests for POST /api/ucsbdates/post...
+    // Tests for POST /api/menuitemreview/post...
 
     @Test
     public void logged_out_users_cannot_post() throws Exception {
@@ -116,24 +116,24 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
 
     @WithMockUser(roles = { "ADMIN", "USER" })
     @Test
-    public void an_admin_user_can_post_a_new_ucsbdate() throws Exception {
+    public void an_admin_user_can_post_a_new_review() throws Exception {
             // arrange
 
-            LocalDateTime ldt3 = LocalDateTime.parse("2024-05-02T04:30:15");
+            LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
 
             MenuItemReview entry1 = MenuItemReview.builder()
                             .itemId(1)
-                            .reviewerEmail("a@b.com")
-                            .stars(4)
-                            .dateReviewed(ldt3)
-                            .comments("food")
+                            .reviewerEmail("a@ucsb.edu")
+                            .stars(5)
+                            .dateReviewed(ldt1)
+                            .comments("b")
                             .build();
 
             when(menuItemReviewRepository.save(entry1)).thenReturn(entry1);
 
             // act
             MvcResult response = mockMvc.perform(
-                            post("/api/menuitemreviews/post?itemId=1&reviewerEmail=a%40b.com&stars=4&dateReviewed=2024-05-02T04%3A30%3A15&comments=food")
+                            post("/api/menuitemreview/post?itemId=1&reviewerEmail=a@ucsb.edu&stars=5&dateReviewed=2022-01-03T00:00:00&comments=b")
                                             .with(csrf()))
                             .andExpect(status().isOk()).andReturn();
 
@@ -143,6 +143,5 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
             String responseString = response.getResponse().getContentAsString();
             assertEquals(expectedJson, responseString);
     }
-
 
 }
