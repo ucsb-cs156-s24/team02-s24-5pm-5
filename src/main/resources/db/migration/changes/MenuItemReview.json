@@ -27,9 +27,18 @@
                                         "autoIncrement": true,
                                         "constraints": {
                                             "primaryKey": true,
-                                            "primaryKeyName": "CONSTRAINT_9"
+                                            "primaryKeyName": "CONSTRAINT_ID9"
                                         },
                                         "name": "ID",
+                                        "type": "BIGINT"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "constraints": {
+                                            "nullable": false
+                                        },
+                                        "name": "ITEM_ID",
                                         "type": "BIGINT"
                                     }
                                 },
