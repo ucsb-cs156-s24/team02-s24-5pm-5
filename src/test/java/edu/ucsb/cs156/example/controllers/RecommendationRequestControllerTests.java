@@ -247,4 +247,88 @@ public class RecommendationRequestControllerTests extends ControllerTestCase {
             assertEquals("RecommendationRequest with id 15 not found", json.get("message"));
     }
 
+    // Tests for PUT /api/RecommendationRequest?id=... 
+
+    @WithMockUser(roles = { "ADMIN", "USER" })
+    @Test
+    public void admin_can_edit_an_existing_rec() throws Exception {
+            // arrange
+
+            LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
+            LocalDateTime ldt2 = LocalDateTime.parse("2003-01-03T00:00:00");
+
+            RecommendationRequest recOrig = RecommendationRequest.builder()
+                                        .requesterEmail("a")
+                                        .professorEmail("b")
+                                        .explanation("c")
+                                        .dateRequested(ldt1)
+                                        .dateNeeded(ldt1)
+                                        .done(true)
+                                        .build();
+
+            RecommendationRequest recUpdate = RecommendationRequest.builder()
+                                        .requesterEmail("g")
+                                        .professorEmail("g")
+                                        .explanation("g")
+                                        .dateRequested(ldt2)
+                                        .dateNeeded(ldt2)
+                                        .done(false)
+                                        .build();
+
+            String requestBody = mapper.writeValueAsString(recUpdate);
+
+            when(recommendationRequestRepository.findById(eq(67L))).thenReturn(Optional.of(recOrig));
+
+            // act
+            MvcResult response = mockMvc.perform(
+                            put("/api/RecommendationRequest?id=67")
+                                            .contentType(MediaType.APPLICATION_JSON)
+                                            .characterEncoding("utf-8")
+                                            .content(requestBody)
+                                            .with(csrf()))
+                            .andExpect(status().isOk()).andReturn();
+
+            // assert
+            verify(recommendationRequestRepository, times(1)).findById(67L);
+            verify(recommendationRequestRepository, times(1)).save(recUpdate); // should be saved with correct user
+            String responseString = response.getResponse().getContentAsString();
+            assertEquals(requestBody, responseString);
+    }
+
+    
+    @WithMockUser(roles = { "ADMIN", "USER" })
+    @Test
+    public void admin_cannot_edit_ucsbdate_that_does_not_exist() throws Exception {
+            // arrange
+
+            LocalDateTime ldt1 = LocalDateTime.parse("2022-01-03T00:00:00");
+
+            RecommendationRequest recEdited = RecommendationRequest.builder()
+                                        .requesterEmail("g")
+                                        .professorEmail("g")
+                                        .explanation("g")
+                                        .dateRequested(ldt1)
+                                        .dateNeeded(ldt1)
+                                        .done(false)
+                                        .build();
+
+            String requestBody = mapper.writeValueAsString(recEdited);
+
+            when(recommendationRequestRepository.findById(eq(67L))).thenReturn(Optional.empty());
+
+            // act
+            MvcResult response = mockMvc.perform(
+                            put("/api/RecommendationRequest?id=67")
+                                            .contentType(MediaType.APPLICATION_JSON)
+                                            .characterEncoding("utf-8")
+                                            .content(requestBody)
+                                            .with(csrf()))
+                            .andExpect(status().isNotFound()).andReturn();
+
+            // assert
+            verify(recommendationRequestRepository, times(1)).findById(67L);
+            Map<String, Object> json = responseToJson(response);
+            assertEquals("RecommendationRequest with id 67 not found", json.get("message"));
+
+    }
 }
