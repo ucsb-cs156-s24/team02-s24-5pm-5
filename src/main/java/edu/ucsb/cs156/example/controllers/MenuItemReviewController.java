@@ -49,7 +49,7 @@ public class MenuItemReviewController {
     public MenuItemReview postUCSBDate(
             @Parameter(name="itemId") @RequestParam long itemId,
             @Parameter(name="reviewerEmail") @RequestParam String reviewerEmail,
-            @Parameter(name="date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)") @RequestParam("dateReviewed") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateReviewed,
+            @Parameter(name="dateReviewed") @RequestParam("dateReviewed") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateReviewed,
             @Parameter(name="stars") @RequestParam String stars,
             @Parameter(name="comments") @RequestParam String comments)
             throws JsonProcessingException {
