@@ -90,5 +90,27 @@ import java.time.LocalDateTime;
 <span class="fc" id="L90">        recommendationRequestRepository.delete(ucsbDate);</span>
 <span class="fc" id="L91">        return genericMessage(&quot;RecommendationRequest with id %s deleted&quot;.formatted(id));</span>
     }
+
+    @Operation(summary= &quot;Update a single rec&quot;)
+    @PreAuthorize(&quot;hasRole('ROLE_ADMIN')&quot;)
+    @PutMapping(&quot;&quot;)
+    public RecommendationRequest updateRec(
+            @Parameter(name=&quot;id&quot;) @RequestParam Long id,
+            @RequestBody @Valid RecommendationRequest incoming) {
+
+<span class="fc" id="L101">        RecommendationRequest rec = recommendationRequestRepository.findById(id)</span>
+<span class="fc" id="L102">                .orElseThrow(() -&gt; new EntityNotFoundException(RecommendationRequest.class, id));</span>
+
+<span class="fc" id="L104">            rec.setRequesterEmail(incoming.getRequesterEmail());</span>
+<span class="fc" id="L105">            rec.setProfessorEmail(incoming.getProfessorEmail());</span>
+<span class="fc" id="L106">            rec.setExplanation(incoming.getExplanation());</span>
+<span class="fc" id="L107">            rec.setDateRequested(incoming.getDateRequested());</span>
+<span class="fc" id="L108">            rec.setDateNeeded(incoming.getDateNeeded());</span>
+<span class="fc" id="L109">            rec.setDone(incoming.getDone());</span>
+
+<span class="fc" id="L111">        recommendationRequestRepository.save(rec);</span>
+
+<span class="fc" id="L113">        return rec;</span>
+    }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
