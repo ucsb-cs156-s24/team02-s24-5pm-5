@@ -68,8 +68,8 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
                             .itemId(1)
                             .reviewerEmail("a@b.com")
                             .stars(2)
-                            .comments("bad food")
                             .dateReviewed(ldt1)
+                            .comments("bad food")
                             .build();
 
             LocalDateTime ldt2 = LocalDateTime.parse("2022-03-11T00:00:00");
@@ -78,8 +78,8 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
                             .itemId(2)
                             .reviewerEmail("b@a.com")
                             .stars(4)
-                            .comments("good food")
                             .dateReviewed(ldt2)
+                            .comments("good food")
                             .build();
 
             ArrayList<MenuItemReview> expectedReviews = new ArrayList<>();
