@@ -125,15 +125,15 @@ public class MenuItemReviewControllerTests extends ControllerTestCase{
                             .itemId(1)
                             .reviewerEmail("a@b.com")
                             .stars(4)
-                            .comments("food")
                             .dateReviewed(ldt3)
+                            .comments("food")
                             .build();
 
             when(menuItemReviewRepository.save(entry1)).thenReturn(entry1);
 
             // act
             MvcResult response = mockMvc.perform(
-                            post("api/menuitemreviews/post?itemId=1&reviewerEmail=a%40b.com&stars=4&dateReviewed=2024-05-02T04%3A30%3A15&comments=food")
+                            post("/api/menuitemreviews/post?itemId=1&reviewerEmail=a%40b.com&stars=4&dateReviewed=2024-05-02T04%3A30%3A15&comments=food")
                                             .with(csrf()))
                             .andExpect(status().isOk()).andReturn();
 
