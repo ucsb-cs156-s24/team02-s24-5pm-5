@@ -65,49 +65,4 @@ public class RecommendationRequestController extends ApiController {
 
         return savedRecommendationRequest;
     }
-
-    // @Operation(summary= "Get a single commons")
-    // @PreAuthorize("hasRole('ROLE_USER')")
-    // @GetMapping("")
-    // public UCSBDiningCommons getById(
-    //         @Parameter(name="id") @RequestParam Long id) {
-    //     RecommendationRequest recommendationRequest = recommendationRequest.findById(id)
-    //             .orElseThrow(() -> new EntityNotFoundException(recommendationRequest, id));
-
-    //     return commons;
-    // }
-
-    // @Operation(summary= "Delete a UCSBDiningCommons")
-    // @PreAuthorize("hasRole('ROLE_ADMIN')")
-    // @DeleteMapping("")
-    // public Object deleteCommons(
-    //         @Parameter(name="code") @RequestParam String code) {
-    //     UCSBDiningCommons commons = ucsbDiningCommonsRepository.findById(code)
-    //             .orElseThrow(() -> new EntityNotFoundException(UCSBDiningCommons.class, code));
-
-    //     ucsbDiningCommonsRepository.delete(commons);
-    //     return genericMessage("UCSBDiningCommons with id %s deleted".formatted(code));
-    // }
-
-    // @Operation(summary= "Update a recommendation requests")
-    // @PreAuthorize("hasRole('ROLE_ADMIN')")
-    // @PutMapping("")
-    // public RecommendationRequest updateRecommendationRequest(
-    //         @Parameter(name="code") @RequestParam String code,
-    //         @RequestBody @Valid UCSBDiningCommons incoming) {
-
-    //     UCSBDiningCommons recommendationRequest = recommendationRequestRepository.findById(code)
-    //             .orElseThrow(() -> new EntityNotFoundException(RecommendationRequest.class, code));
-
-
-    //     commons.setName(incoming.getName());  
-    //     commons.setHasSackMeal(incoming.getHasSackMeal());
-    //     commons.setHasTakeOutMeal(incoming.getHasTakeOutMeal());
-    //     commons.setHasDiningCam(incoming.getHasDiningCam());
-    //     commons.setLatitude(incoming.getLatitude());
-    //     commons.setLongitude(incoming.getLongitude());
-
-    //     ucsbDiningCommonsRepository.save(commons);
-
-    //     return commons;
 }
