@@ -25,7 +25,7 @@
                     "column": {
                       "constraints": {
                         "primaryKey": true,
-                        "primaryKeyName": "CONSTRAINT_ID100"
+                        "primaryKeyName": "CONSTRAINT_ID"
                       },
                       "name": "ORGCODE",
                       "type": "VARCHAR(255)"
