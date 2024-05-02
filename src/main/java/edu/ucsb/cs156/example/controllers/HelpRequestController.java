@@ -36,55 +36,67 @@ import java.time.LocalDateTime;
 @Slf4j
 public class HelpRequestController extends ApiController {
 
-  @Autowired
-  HelpRequestRepository helpRequestRepository;
+        @Autowired
+        HelpRequestRepository helpRequestRepository;
 
-  @Operation(summary = "List all helprequests")
-  @PreAuthorize("hasRole('ROLE_USER')")
-  @GetMapping("/all")
-  public Iterable<HelpRequest> allHelpRequest() {
-    Iterable<HelpRequest> requests = helpRequestRepository.findAll();
-    return requests;
-  }
+        @Operation(summary = "List all helprequests")
+        @PreAuthorize("hasRole('ROLE_USER')")
+        @GetMapping("/all")
+        public Iterable<HelpRequest> allHelpRequest() {
+                Iterable<HelpRequest> requests = helpRequestRepository.findAll();
+                return requests;
+        }
 
-  @Operation(summary = "Create a new help request")
-  @PreAuthorize("hasRole('ROLE_ADMIN')")
-  @PostMapping("/post")
-  public HelpRequest postHelpRequest(
-      @Parameter(name = "requesterEmail") @RequestParam String requesterEmail,
-      @Parameter(name = "teamId") @RequestParam String teamId,
-      @Parameter(name = "tableOrBreakoutRoom") @RequestParam String tableOrBreakoutRoom,
-      @Parameter(name = "explanation") @RequestParam String explanation,
-      @Parameter(name = "solved") @RequestParam boolean solved,
-      @Parameter(name = "requestTime") @RequestParam("requestTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime)
-      throws JsonProcessingException {
+        @Operation(summary = "Create a new help request")
+        @PreAuthorize("hasRole('ROLE_ADMIN')")
+        @PostMapping("/post")
+        public HelpRequest postHelpRequest(
+                        @Parameter(name = "requesterEmail") @RequestParam String requesterEmail,
+                        @Parameter(name = "teamId") @RequestParam String teamId,
+                        @Parameter(name = "tableOrBreakoutRoom") @RequestParam String tableOrBreakoutRoom,
+                        @Parameter(name = "explanation") @RequestParam String explanation,
+                        @Parameter(name = "solved") @RequestParam boolean solved,
+                        @Parameter(name = "requestTime") @RequestParam("requestTime") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime requestTime)
+                        throws JsonProcessingException {
 
-    // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    // See: https://www.baeldung.com/spring-date-parameters
+                // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+                // See: https://www.baeldung.com/spring-date-parameters
 
-    log.info("requestTime={}", requestTime);
+                log.info("requestTime={}", requestTime);
 
-    HelpRequest helpRequest = new HelpRequest();
-    helpRequest.setRequesterEmail(requesterEmail);
-    helpRequest.setTeamId(teamId);
-    helpRequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
-    helpRequest.setExplanation(explanation);
-    helpRequest.setSolved(solved);
-    helpRequest.setRequestTime(requestTime);
+                HelpRequest helpRequest = new HelpRequest();
+                helpRequest.setRequesterEmail(requesterEmail);
+                helpRequest.setTeamId(teamId);
+                helpRequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
+                helpRequest.setExplanation(explanation);
+                helpRequest.setSolved(solved);
+                helpRequest.setRequestTime(requestTime);
 
-    HelpRequest savedHelpRequest = helpRequestRepository.save(helpRequest);
+                HelpRequest savedHelpRequest = helpRequestRepository.save(helpRequest);
 
-    return savedHelpRequest;
-  }
+                return savedHelpRequest;
+        }
 
-  @Operation(summary = "Get a single help request")
-  @PreAuthorize("hasRole('ROLE_USER')")
-  @GetMapping("")
-  public HelpRequest getById(
-      @Parameter(name = "id") @RequestParam Long id) {
-    HelpRequest helpRequest = helpRequestRepository.findById(id)
-        .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
+        @Operation(summary = "Get a single help request")
+        @PreAuthorize("hasRole('ROLE_USER')")
+        @GetMapping("")
+        public HelpRequest getById(
+                        @Parameter(name = "id") @RequestParam Long id) {
+                HelpRequest helpRequest = helpRequestRepository.findById(id)
+                                .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
 
-    return helpRequest;
-  }
+                return helpRequest;
+        }
+
+        @Operation(summary = "Delete a HelpRequest")
+        @PreAuthorize("hasRole('ROLE_ADMIN')")
+        @DeleteMapping("")
+        public Object deleteHelpRequest(
+                        @Parameter(name = "id") @RequestParam Long id) {
+                HelpRequest helpRequest = helpRequestRepository.findById(id)
+                                .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
+
+                helpRequestRepository.delete(helpRequest);
+                return genericMessage("HelpRequest with id %s deleted".formatted(id));
+        }
 }
