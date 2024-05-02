@@ -39,10 +39,11 @@ public class HelpRequestController extends ApiController {
   @Autowired
   HelpRequestRepository helpRequestRepository;
 
+  @PreAuthorize("hasRole('ROLE_USER')")
   @GetMapping("/all")
   public Iterable<HelpRequest> allHelpRequest() {
-    Iterable<HelpRequest> dates = helpRequestRepository.findAll();
-    return dates;
+    Iterable<HelpRequest> requests = helpRequestRepository.findAll();
+    return requests;
   }
 
   @PostMapping("/post")
