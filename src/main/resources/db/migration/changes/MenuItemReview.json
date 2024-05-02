@@ -1,0 +1,80 @@
+{
+    "databaseChangeLog": [
+        {
+            "changeSet": {
+                "id": "MenuItemReview-1",
+                "author": "tejasvissa813",
+                "preConditions": [
+                    {
+                        "onFail": "MARK_RAN"
+                    },
+                    {
+                        "not": [
+                            {
+                                "tableExists": {
+                                    "tableName": "MENUITEMREVIEW"
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "changes": [
+                    {
+                        "createTable": {
+                            "columns": [
+                                {
+                                    "column": {
+                                        "autoIncrement": true,
+                                        "constraints": {
+                                            "primaryKey": true,
+                                            "primaryKeyName": "CONSTRAINT_ID9"
+                                        },
+                                        "name": "ID",
+                                        "type": "BIGINT"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "constraints": {
+                                            "nullable": false
+                                        },
+                                        "name": "ITEM_ID",
+                                        "type": "BIGINT"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "constraints": {
+                                            "nullable": false
+                                        },
+                                        "name": "REVIEWER_EMAIL",
+                                        "type": "VARCHAR(255)"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "constraints": {
+                                            "nullable": false
+                                        },
+                                        "name": "STARS",
+                                        "type": "VARCHAR(255)"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "constraints": {
+                                            "nullable": false
+                                        },
+                                        "name": "COMMENTS",
+                                        "type": "VARCHAR(255)"
+                                    }
+                                }
+                            ],
+                            "tableName": "MENUITEMREVIEW"
+                        }
+                    }
+                ]
+            }
+        }
+    ]
+  }
