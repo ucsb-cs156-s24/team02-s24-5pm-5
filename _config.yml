@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s24/team02-s24-5pm-5
 owner: ucsb-cs156-s24
 repo_name: team02-s24-5pm-5
-pull_requests: [{"author":{"id":"U_kgDOBdlAFQ","is_bot":false,"login":"maidang111","name":""},"headRefName":"MD-RecommendationRequestController","number":66,"title":"Added Controller and Test to RecommendationRequest","url":"https://github.com/ucsb-cs156-s24/team02-s24-5pm-5/pull/66"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjM2MTM3NjU0","is_bot":false,"login":"Ononymous","name":"Gen Tamada"},"headRefName":"changed-readme","number":68,"title":"Added readme info","url":"https://github.com/ucsb-cs156-s24/team02-s24-5pm-5/pull/68"},{"author":{"id":"MDQ6VXNlcjM4MzkzMjM5","is_bot":false,"login":"tejasvissa813","name":""},"headRefName":"TV-MenuItemReview-create-db","number":67,"title":"TV - create database","url":"https://github.com/ucsb-cs156-s24/team02-s24-5pm-5/pull/67"},{"author":{"id":"U_kgDOBdlAFQ","is_bot":false,"login":"maidang111","name":""},"headRefName":"MD-RecommendationRequestController","number":66,"title":"Added Controller and Test to RecommendationRequest","url":"https://github.com/ucsb-cs156-s24/team02-s24-5pm-5/pull/66"}]
