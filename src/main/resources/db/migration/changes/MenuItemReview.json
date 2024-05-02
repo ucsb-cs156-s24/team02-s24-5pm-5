@@ -57,7 +57,7 @@
                                             "nullable": false
                                         },
                                         "name": "STARS",
-                                        "type": "VARCHAR(255)"
+                                        "type": "BIGINT"
                                     }
                                 },
                                 {
