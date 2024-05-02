@@ -42,7 +42,7 @@ public class UCSBDatesController extends ApiController {
     public Iterable<UCSBDate> allUCSBDates() {
         Iterable<UCSBDate> dates = ucsbDateRepository.findAll();
         return dates;
-    }
+    } 
 
     @Operation(summary= "Create a new date")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
