@@ -70,14 +70,14 @@ public class MenuItemReviewController {
         return savedMenuItemReview;
     }
 
-    @Operation(summary= "Get a single review")
+    @Operation(summary= "Get a single article")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
     public MenuItemReview getById(
             @Parameter(name="id") @RequestParam Long id) {
-        MenuItemReview ucsbDate = menuItemReviewRepository.findById(id)
+        MenuItemReview menu = menuItemReviewRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException(MenuItemReview.class, id));
 
-        return ucsbDate;
+        return menu;
     }
 }
