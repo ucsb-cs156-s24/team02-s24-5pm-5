@@ -57,7 +57,16 @@
                                             "nullable": false
                                         },
                                         "name": "STARS",
-                                        "type": "VARCHAR(255)"
+                                        "type": "BIGINT"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "constraints": {
+                                            "nullable": false
+                                        },
+                                        "name": "DATE_REVIEWED",
+                                        "type": "TIMESTAMP"
                                     }
                                 },
                                 {
