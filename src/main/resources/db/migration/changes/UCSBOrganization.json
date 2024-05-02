@@ -25,9 +25,9 @@
                     "column": {
                       "constraints": {
                         "primaryKey": true,
-                        "primaryKeyName": "CONSTRAINT_33"
+                        "primaryKeyName": "CONSTRAINT_ID"
                       },
-                      "name": "ORG_CODE",
+                      "name": "ORGCODE",
                       "type": "VARCHAR(255)"
                     }
                   },
@@ -36,7 +36,7 @@
                       "constraints": {
                         "nullable": false
                       },
-                      "name": "ORG_TRANSLATION_SHORT",
+                      "name": "ORGTRANSLATIONSHORT",
                       "type": "VARCHAR(255)"
                     }
                   },
@@ -45,7 +45,7 @@
                       "constraints": {
                         "nullable": false
                       },
-                      "name": "ORG_TRANSLATION",
+                      "name": "ORGTRANSLATION",
                       "type": "VARCHAR(255)"
                     }
                   },
