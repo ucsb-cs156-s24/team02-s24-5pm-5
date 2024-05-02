@@ -39,6 +39,7 @@ public class HelpRequestController extends ApiController {
   @Autowired
   HelpRequestRepository helpRequestRepository;
 
+  @Operation(summary = "List all helprequests")
   @PreAuthorize("hasRole('ROLE_USER')")
   @GetMapping("/all")
   public Iterable<HelpRequest> allHelpRequest() {
@@ -46,6 +47,8 @@ public class HelpRequestController extends ApiController {
     return requests;
   }
 
+  @Operation(summary = "Create a new help request")
+  @PreAuthorize("hasRole('ROLE_ADMIN')")
   @PostMapping("/post")
   public HelpRequest postHelpRequest(
       @Parameter(name = "requesterEmail") @RequestParam String requesterEmail,
@@ -74,4 +77,14 @@ public class HelpRequestController extends ApiController {
     return savedHelpRequest;
   }
 
+  @Operation(summary = "Get a single help request")
+  @PreAuthorize("hasRole('ROLE_USER')")
+  @GetMapping("")
+  public HelpRequest getById(
+      @Parameter(name = "id") @RequestParam Long id) {
+    HelpRequest helpRequest = helpRequestRepository.findById(id)
+        .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
+
+    return helpRequest;
+  }
 }
