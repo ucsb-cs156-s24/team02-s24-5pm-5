@@ -65,6 +65,15 @@
                                         "constraints": {
                                             "nullable": false
                                         },
+                                        "name": "DATE_REVIEWED",
+                                        "type": "TIMESTAMP"
+                                    }
+                                },
+                                {
+                                    "column": {
+                                        "constraints": {
+                                            "nullable": false
+                                        },
                                         "name": "COMMENTS",
                                         "type": "VARCHAR(255)"
                                     }
